@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +674,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="CocoAudit" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -700,18 +701,44 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="CocoAudit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1131" height="1083"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="MUx-zW-Zea" customClass="DragView" customModule="CocoAudit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="1131" height="1083"/>
+                            </customView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Spv-gy-jXl">
+                                <rect key="frame" x="99" y="75" width="933" height="933"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Face_ID" id="Lbx-mW-NDa"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Spv-gy-jXl" secondAttribute="trailing" constant="99" id="3ag-Nq-haR"/>
+                            <constraint firstItem="MUx-zW-Zea" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Jlf-Jo-jjW"/>
+                            <constraint firstAttribute="bottom" secondItem="Spv-gy-jXl" secondAttribute="bottom" constant="75" id="SWo-pm-OEC"/>
+                            <constraint firstAttribute="bottom" secondItem="MUx-zW-Zea" secondAttribute="bottom" id="hKQ-We-DO9"/>
+                            <constraint firstItem="Spv-gy-jXl" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="99" id="lWa-FQ-lj8"/>
+                            <constraint firstAttribute="trailing" secondItem="MUx-zW-Zea" secondAttribute="trailing" id="ljj-iz-L9T"/>
+                            <constraint firstItem="MUx-zW-Zea" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="xyH-oe-pLj"/>
+                            <constraint firstItem="Spv-gy-jXl" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="75" id="zxo-Ku-2ri"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dragView" destination="MUx-zW-Zea" id="1R8-sv-sCH"/>
+                        <outlet property="dropAreaImage" destination="Spv-gy-jXl" id="6hx-oo-7K9"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="74.5" y="712.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Face_ID" width="466.5" height="466.5"/>
+    </resources>
 </document>

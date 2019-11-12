@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0C78C2E8237A18C00083F9FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78C2E7237A18C00083F9FA /* AppDelegate.swift */; };
-		0C78C2EA237A18C00083F9FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78C2E9237A18C00083F9FA /* ViewController.swift */; };
 		0C78C2EC237A18C10083F9FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2EB237A18C10083F9FA /* Assets.xcassets */; };
 		0C78C2EF237A18C10083F9FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2ED237A18C10083F9FA /* Main.storyboard */; };
 		0C78C2FB237A18C20083F9FA /* CocoAuditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78C2FA237A18C20083F9FA /* CocoAuditTests.swift */; };
 		0C78C306237A18C20083F9FA /* CocoAuditUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78C305237A18C20083F9FA /* CocoAuditUITests.swift */; };
+		0C78C314237A23700083F9FA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78C313237A23700083F9FA /* MainViewController.swift */; };
+		0C78C319237A29150083F9FA /* DragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78C318237A29150083F9FA /* DragView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +36,6 @@
 /* Begin PBXFileReference section */
 		0C78C2E4237A18C00083F9FA /* CocoAudit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoAudit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C78C2E7237A18C00083F9FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0C78C2E9237A18C00083F9FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0C78C2EB237A18C10083F9FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C78C2EE237A18C10083F9FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C78C2F0237A18C10083F9FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,6 +46,8 @@
 		0C78C301237A18C20083F9FA /* CocoAuditUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoAuditUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C78C305237A18C20083F9FA /* CocoAuditUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocoAuditUITests.swift; sourceTree = "<group>"; };
 		0C78C307237A18C20083F9FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C78C313237A23700083F9FA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0C78C318237A29150083F9FA /* DragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +98,10 @@
 		0C78C2E6237A18C00083F9FA /* CocoAudit */ = {
 			isa = PBXGroup;
 			children = (
+				0C78C31A237A82980083F9FA /* View */,
+				0C78C315237A25450083F9FA /* ViewModels */,
 				0C78C2E7237A18C00083F9FA /* AppDelegate.swift */,
-				0C78C2E9237A18C00083F9FA /* ViewController.swift */,
+				0C78C313237A23700083F9FA /* MainViewController.swift */,
 				0C78C2EB237A18C10083F9FA /* Assets.xcassets */,
 				0C78C2ED237A18C10083F9FA /* Main.storyboard */,
 				0C78C2F0237A18C10083F9FA /* Info.plist */,
@@ -122,6 +126,21 @@
 				0C78C307237A18C20083F9FA /* Info.plist */,
 			);
 			path = CocoAuditUITests;
+			sourceTree = "<group>";
+		};
+		0C78C315237A25450083F9FA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		0C78C31A237A82980083F9FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0C78C318237A29150083F9FA /* DragView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,8 +273,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C78C2EA237A18C00083F9FA /* ViewController.swift in Sources */,
+				0C78C314237A23700083F9FA /* MainViewController.swift in Sources */,
 				0C78C2E8237A18C00083F9FA /* AppDelegate.swift in Sources */,
+				0C78C319237A29150083F9FA /* DragView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
