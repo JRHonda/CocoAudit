@@ -8,10 +8,11 @@
 
 import Cocoa
 
-//protocol DragDropViewDelegate
-//{
-//    func draggedMediaType(type: MediaType, url: NSURL)
-//}
+protocol DragDropViewDelegate: AnyObject
+{
+    var fileUrl: URL? { get set }
+    func draggedFile(url: URL) -> URL?
+}
 
 class DragView: NSView {
     
@@ -22,7 +23,7 @@ class DragView: NSView {
     
     private var acceptedFileExtensions = ["lock"]
     
-    //var delegate: DragDropViewDelegate?
+    var delegate: DragDropViewDelegate?
     
     // MARK: - Initializer
     required init?(coder: NSCoder) {
@@ -38,14 +39,18 @@ class DragView: NSView {
                 [.fileName]
             )
         }
+        //self.setNeedsDisplay(NSRect(x: 0, y: 0, width: 218, height: 218))
     }
+    
+
     
     // MARK: - Methods
     
     // Can draw custom shapes in view. NOTE: Must call self.setNeedsDisplay method when redrawing in within view
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        
+        super.layer?.backgroundColor = .init(gray: 0.1, alpha: 1)
+        super.layer?.cornerRadius = 8
     }
     
     // Called first and when user renters drop area if they left
@@ -56,6 +61,7 @@ class DragView: NSView {
         // Check if file extension is permitted
         isFileTypeIsOk = checkExtension(drag: sender)
         // self.setNeedsDisplay(self.bounds) // Only need to call if draw contents with drawRect
+        
         return .init()
     }
     
@@ -68,6 +74,8 @@ class DragView: NSView {
     // User has exited the drop view area, mouse-down with item.
     override func draggingExited(_ sender: NSDraggingInfo?) {
         print("draggingExited")
+        
+        super.layer?.borderWidth = 0
         isHighlighted = false
     }
     
@@ -89,22 +97,64 @@ class DragView: NSView {
             return false
         }
         print("Dragged file URL", draggedFileUrl)
+        
+        // Set delegate property with delegate method call
+        if let fileUrl = self.delegate?.draggedFile(url: draggedFileUrl) {
+            self.delegate?.fileUrl = fileUrl // protocol variable must be NOT be assigned directly from delegate method call because it will throw simulataneous access errors. This is why I am using an if-let statement
+        }
+        
         return true
     }
 }
 
+// MARK: - Helper Methods
 extension DragView {
-    // Helper Method
+    // Helper Methods
+    
     fileprivate func checkExtension(drag: NSDraggingInfo) -> Bool {
         guard let fileExtension = drag.draggedFileURL?.pathExtension.lowercased() else {
             print("wrong extension")
+            
             return false
         }
+        
         print("checking if extension is acceptable")
         print("File extension", fileExtension)
         let isAcceptable = acceptedFileExtensions.contains(fileExtension)
         print("Bool is", isAcceptable)
+        
+        if isAcceptable {
+            self.drawBorder(withColor: .green)
+        } else {
+            self.drawBorder(withColor: .red)
+        }
+        
+        
         return isAcceptable
+    }
+    
+    fileprivate func drawBorder(withColor color: NSColor) {
+        super.layer?.borderColor = color.cgColor
+        super.layer?.borderWidth = 4
+    }
+    
+    /// Draws border with dashes or no dashes if set the dash length to 0
+    func drawBorderWith(dashHeight: CGFloat, dashLength: CGFloat, color: NSColor) {
+        // setup the context
+        let currentContext = NSGraphicsContext.current!.cgContext
+        currentContext.setLineWidth(dashHeight)
+        currentContext.setLineCap(.round)
+        currentContext.setLineDash(phase: 0, lengths: [dashLength])
+        currentContext.setStrokeColor(color.cgColor)
+
+        // draw the dashed path
+        currentContext.addRect(bounds.insetBy(dx: dashHeight, dy: dashHeight))
+        currentContext.strokePath()
+    }
+    
+    func reset() {
+        print("Resetting view")
+        super.layer?.borderWidth = 0
     }
 }
 
@@ -123,4 +173,8 @@ extension NSPasteboard.PasteboardType {
     static let fileName: NSPasteboard.PasteboardType = {
         return NSPasteboard.PasteboardType("NSFilenamesPboardType")
     }()
+}
+
+enum MediaType: String {
+    case Lock = "lock"
 }

@@ -10,18 +10,64 @@ import Cocoa
 
 class MainViewController: NSViewController {
     
-    @IBOutlet weak var dropAreaImage: NSImageView!
-    @IBOutlet weak var dragView: DragView!
+    // MARK: - Properties
+    @IBOutlet weak var mainSplitView: NSSplitView!
+    @IBOutlet weak var dropPodfileArea: DragView!
+    @IBOutlet weak var cveSearchTextField: NSTextField!
+    @IBOutlet weak var cveSearchButton: NSButton!
+    @IBOutlet weak var resetButton: NSButton!
+    @IBOutlet weak var dragInstructionLabel: NSTextField!
     
+    var fileUrl: URL? {
+        didSet {
+            // run search
+        }
+    }
+    
+    //
+    var cveSearchResults: CVESearchResults?
+    var podTitles: [PodTitle] = []
+    var results: [CVEMatch] = []
+    
+    // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         
+        mainSplitView.delegate = self
+        mainSplitView.setPosition(225, ofDividerAt: 0)
+        
+        dropPodfileArea.delegate = self
+        cveSearchResults?.delegate = self as! CVESearchDelegate
+        
         
     }
     
+    @IBAction func resetToInitialState(_ sender: NSButton) {
+        dropPodfileArea.reset()
+    }
+    
+    
 }
 
-extension MainViewController: NSDraggingDestination {
+extension MainViewController: NSSplitViewDelegate {
+    func splitView(_ splitView: NSSplitView, constrainMaxCoordinate proposedMaximumPosition: CGFloat, ofSubviewAt dividerIndex: Int) -> CGFloat {
+        return 250
+    }
+    
+    func splitView(_ splitView: NSSplitView, constrainMinCoordinate proposedMinimumPosition: CGFloat, ofSubviewAt dividerIndex: Int) -> CGFloat {
+        return 200
+    }
+}
+
+extension MainViewController: DragDropViewDelegate {
+    
+    func draggedFile(url: URL) -> URL? {
+        fileUrl = url
+        guard fileUrl != nil else {
+            return nil
+        }
+        return fileUrl
+    }
     
 }

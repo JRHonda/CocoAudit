@@ -706,39 +706,128 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="CocoAudit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1131" height="1083"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1002" height="626"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="MUx-zW-Zea" customClass="DragView" customModule="CocoAudit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="1131" height="1083"/>
-                            </customView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Spv-gy-jXl">
-                                <rect key="frame" x="99" y="75" width="933" height="933"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Face_ID" id="Lbx-mW-NDa"/>
-                            </imageView>
+                            <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7S-SU-jex">
+                                <rect key="frame" x="0.0" y="0.0" width="1002" height="626"/>
+                                <subviews>
+                                    <customView id="Das-ss-rmG">
+                                        <rect key="frame" x="0.0" y="0.0" width="258" height="626"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <subviews>
+                                            <stackView distribution="fillProportionally" orientation="vertical" alignment="trailing" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Get-PZ-2n1">
+                                                <rect key="frame" x="20" y="320" width="218" height="286"/>
+                                                <subviews>
+                                                    <customView canDrawConcurrently="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ffq-XY-rch" customClass="DragView" customModule="CocoAudit" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="68" width="218" height="218"/>
+                                                        <subviews>
+                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EZi-Ts-kG9">
+                                                                <rect key="frame" x="27" y="100" width="165" height="19"/>
+                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Drag Podfile.lock here" id="Fy4-Wc-8u8">
+                                                                    <font key="font" metaFont="system" size="16"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="EZi-Ts-kG9" firstAttribute="centerY" secondItem="ffq-XY-rch" secondAttribute="centerY" id="Pvl-6D-J4l"/>
+                                                            <constraint firstItem="EZi-Ts-kG9" firstAttribute="centerX" secondItem="ffq-XY-rch" secondAttribute="centerX" id="i0b-eV-sSH"/>
+                                                        </constraints>
+                                                    </customView>
+                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1l7-ca-hsh">
+                                                        <rect key="frame" x="0.0" y="34" width="218" height="22"/>
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="CVE Search" bezelStyle="round" id="Jsf-W9-V60">
+                                                            <font key="font" usesAppearanceFont="YES"/>
+                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                    <stackView canDrawConcurrently="YES" distribution="fillEqually" orientation="horizontal" alignment="centerY" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zvE-N0-tz5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="218" height="22"/>
+                                                        <subviews>
+                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cdZ-ek-Rdt">
+                                                                <rect key="frame" x="0.0" y="-1" width="103" height="23"/>
+                                                                <buttonCell key="cell" type="roundTextured" title="Search" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oZM-5e-a94">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                            </button>
+                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3BV-Kx-mPY">
+                                                                <rect key="frame" x="115" y="-1" width="103" height="23"/>
+                                                                <buttonCell key="cell" type="roundTextured" title="Reset" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TYn-tu-dID">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="resetToInitialState:" target="XfG-lQ-9wD" id="cCv-VK-3gd"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <visibilityPriorities>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                        </visibilityPriorities>
+                                                        <customSpacing>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                        </customSpacing>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="zvE-N0-tz5" firstAttribute="leading" secondItem="Get-PZ-2n1" secondAttribute="leading" id="95z-w5-SeG"/>
+                                                    <constraint firstAttribute="trailing" secondItem="zvE-N0-tz5" secondAttribute="trailing" id="vQ4-dh-wkE"/>
+                                                </constraints>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Get-PZ-2n1" firstAttribute="top" secondItem="Das-ss-rmG" secondAttribute="top" constant="20" id="9t1-1X-Q0z"/>
+                                            <constraint firstItem="Get-PZ-2n1" firstAttribute="leading" secondItem="Das-ss-rmG" secondAttribute="leading" constant="20" id="glS-lS-Mbr"/>
+                                            <constraint firstAttribute="bottom" secondItem="Get-PZ-2n1" secondAttribute="bottom" constant="320" id="grE-rz-QV0"/>
+                                            <constraint firstAttribute="trailing" secondItem="Get-PZ-2n1" secondAttribute="trailing" constant="20" id="ly6-RK-HIv"/>
+                                        </constraints>
+                                    </customView>
+                                    <customView fixedFrame="YES" id="7DL-zc-E0T">
+                                        <rect key="frame" x="268" y="0.0" width="734" height="626"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </customView>
+                                </subviews>
+                                <holdingPriorities>
+                                    <real value="250"/>
+                                    <real value="250"/>
+                                </holdingPriorities>
+                            </splitView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Spv-gy-jXl" secondAttribute="trailing" constant="99" id="3ag-Nq-haR"/>
-                            <constraint firstItem="MUx-zW-Zea" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Jlf-Jo-jjW"/>
-                            <constraint firstAttribute="bottom" secondItem="Spv-gy-jXl" secondAttribute="bottom" constant="75" id="SWo-pm-OEC"/>
-                            <constraint firstAttribute="bottom" secondItem="MUx-zW-Zea" secondAttribute="bottom" id="hKQ-We-DO9"/>
-                            <constraint firstItem="Spv-gy-jXl" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="99" id="lWa-FQ-lj8"/>
-                            <constraint firstAttribute="trailing" secondItem="MUx-zW-Zea" secondAttribute="trailing" id="ljj-iz-L9T"/>
-                            <constraint firstItem="MUx-zW-Zea" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="xyH-oe-pLj"/>
-                            <constraint firstItem="Spv-gy-jXl" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="75" id="zxo-Ku-2ri"/>
+                            <constraint firstAttribute="bottom" secondItem="W7S-SU-jex" secondAttribute="bottom" id="6tr-RP-KuV"/>
+                            <constraint firstItem="W7S-SU-jex" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="ghc-FI-22o"/>
+                            <constraint firstAttribute="trailing" secondItem="W7S-SU-jex" secondAttribute="trailing" id="pEL-Qt-2zn"/>
+                            <constraint firstItem="W7S-SU-jex" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="prv-Oa-IWm"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dragView" destination="MUx-zW-Zea" id="1R8-sv-sCH"/>
-                        <outlet property="dropAreaImage" destination="Spv-gy-jXl" id="6hx-oo-7K9"/>
+                        <outlet property="cveSearchButton" destination="cdZ-ek-Rdt" id="PIg-t5-IV4"/>
+                        <outlet property="cveSearchTextField" destination="1l7-ca-hsh" id="JpA-yk-2lh"/>
+                        <outlet property="dragInstructionLabel" destination="EZi-Ts-kG9" id="UNI-yP-f5d"/>
+                        <outlet property="dropPodfileArea" destination="ffq-XY-rch" id="wAr-6f-JMV"/>
+                        <outlet property="mainSplitView" destination="W7S-SU-jex" id="vvp-OJ-jzP"/>
+                        <outlet property="resetButton" destination="3BV-Kx-mPY" id="XPy-91-fOg"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74.5" y="712.5"/>
+            <point key="canvasLocation" x="31" y="990"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Face_ID" width="466.5" height="466.5"/>
-    </resources>
 </document>

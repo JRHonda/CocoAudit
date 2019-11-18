@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C5E709323823624001B0454 /* CVESearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E709223823624001B0454 /* CVESearchDelegate.swift */; };
+		0C5E7096238236A0001B0454 /* CVEMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E7095238236A0001B0454 /* CVEMatches.swift */; };
+		0C5E70982382385B001B0454 /* CVESearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E70972382385B001B0454 /* CVESearchResults.swift */; };
+		0C5E709B23823AB6001B0454 /* Searcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E709A23823AB6001B0454 /* Searcher.swift */; };
+		0C5E709D23823B11001B0454 /* SearchBlob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E709C23823B11001B0454 /* SearchBlob.swift */; };
 		0C78C2E8237A18C00083F9FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78C2E7237A18C00083F9FA /* AppDelegate.swift */; };
 		0C78C2EC237A18C10083F9FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2EB237A18C10083F9FA /* Assets.xcassets */; };
 		0C78C2EF237A18C10083F9FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2ED237A18C10083F9FA /* Main.storyboard */; };
@@ -34,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C5E709223823624001B0454 /* CVESearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVESearchDelegate.swift; sourceTree = "<group>"; };
+		0C5E7095238236A0001B0454 /* CVEMatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVEMatches.swift; sourceTree = "<group>"; };
+		0C5E70972382385B001B0454 /* CVESearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVESearchResults.swift; sourceTree = "<group>"; };
+		0C5E709A23823AB6001B0454 /* Searcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searcher.swift; sourceTree = "<group>"; };
+		0C5E709C23823B11001B0454 /* SearchBlob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBlob.swift; sourceTree = "<group>"; };
 		0C78C2E4237A18C00083F9FA /* CocoAudit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoAudit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C78C2E7237A18C00083F9FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0C78C2EB237A18C10083F9FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,6 +85,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C5E7091238235EB001B0454 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E709223823624001B0454 /* CVESearchDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		0C5E709423823692001B0454 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E7095238236A0001B0454 /* CVEMatches.swift */,
+				0C5E70972382385B001B0454 /* CVESearchResults.swift */,
+				0C5E709C23823B11001B0454 /* SearchBlob.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0C5E709923823AA2001B0454 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E709A23823AB6001B0454 /* Searcher.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		0C78C2DB237A18C00083F9FA = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +134,9 @@
 		0C78C2E6237A18C00083F9FA /* CocoAudit */ = {
 			isa = PBXGroup;
 			children = (
+				0C5E709923823AA2001B0454 /* Services */,
+				0C5E709423823692001B0454 /* Models */,
+				0C5E7091238235EB001B0454 /* Protocols */,
 				0C78C31A237A82980083F9FA /* View */,
 				0C78C315237A25450083F9FA /* ViewModels */,
 				0C78C2E7237A18C00083F9FA /* AppDelegate.swift */,
@@ -273,8 +312,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C5E709D23823B11001B0454 /* SearchBlob.swift in Sources */,
 				0C78C314237A23700083F9FA /* MainViewController.swift in Sources */,
+				0C5E709B23823AB6001B0454 /* Searcher.swift in Sources */,
+				0C5E70982382385B001B0454 /* CVESearchResults.swift in Sources */,
 				0C78C2E8237A18C00083F9FA /* AppDelegate.swift in Sources */,
+				0C5E709323823624001B0454 /* CVESearchDelegate.swift in Sources */,
+				0C5E7096238236A0001B0454 /* CVEMatches.swift in Sources */,
 				0C78C319237A29150083F9FA /* DragView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
