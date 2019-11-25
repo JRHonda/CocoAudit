@@ -9,5 +9,5 @@
 import Foundation
 
 struct SearchBlob {
-    let bodyResponse: String
+    let bodyResponse: AnyObject?
 }

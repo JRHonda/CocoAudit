@@ -13,10 +13,6 @@ final class CVESearchResults {
     var cveMatches: [CVEMatch] = []
     var delegate: CVESearchDelegate?
     
-    func c() {
-        
-    }
-    
 }
 
 

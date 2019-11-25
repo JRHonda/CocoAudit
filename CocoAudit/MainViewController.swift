@@ -17,6 +17,7 @@ class MainViewController: NSViewController {
     @IBOutlet weak var cveSearchButton: NSButton!
     @IBOutlet weak var resetButton: NSButton!
     @IBOutlet weak var dragInstructionLabel: NSTextField!
+    @IBOutlet weak var resultsCountLabel: NSTextField!
     
     var fileUrl: URL? {
         didSet {
@@ -26,19 +27,26 @@ class MainViewController: NSViewController {
     
     //
     var cveSearchResults: CVESearchResults?
-    var podTitles: [PodTitle] = []
-    var results: [CVEMatch] = []
+
     
     // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        resultsCountLabel.stringValue = "" // default ""
         
+        
+        // Split view setup
         mainSplitView.delegate = self
         mainSplitView.setPosition(225, ofDividerAt: 0)
         
+        // UI Delegates
+        cveSearchTextField.delegate = self
+
+        
+        // Model delegates
         dropPodfileArea.delegate = self
-        cveSearchResults?.delegate = self as! CVESearchDelegate
+        cveSearchResults?.delegate = self as? CVESearchDelegate
         
         
     }
@@ -69,5 +77,40 @@ extension MainViewController: DragDropViewDelegate {
         }
         return fileUrl
     }
+    
+}
+
+extension MainViewController: NSTextFieldDelegate {
+    
+    // TODO: - Can implement real-time search while user is typing with this method
+    func controlTextDidChange(_ obj: Notification) {
+        print("controlTextDidChange")
+    }
+    
+    /*
+     Will fire when user presses enter or tab. We allow enter only with logic below.
+     */
+    func controlTextDidEndEditing(_ obj: Notification) {
+        guard let movement = obj.userInfo?["NSTextMovement"] as? Int else { return }
+        
+        if movement == NSReturnTextMovement {
+            // TODO: - Run search against database
+            print("Return was pressed oh yeah!")
+        } else {
+            return
+        }
+    }
+    
+}
+
+extension MainViewController: CVESearchDelegate {
+    func searchRedHat() {
+        
+    }
+    
+    func parseResults(results: AnyObject) -> Any? {
+        return SearchBlob(bodyResponse: nil)
+    }
+    
     
 }

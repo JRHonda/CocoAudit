@@ -725,7 +725,7 @@
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EZi-Ts-kG9">
                                                                 <rect key="frame" x="27" y="100" width="165" height="19"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Drag Podfile.lock here" id="Fy4-Wc-8u8">
-                                                                    <font key="font" metaFont="system" size="16"/>
+                                                                    <font key="font" metaFont="label" size="16"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
@@ -790,6 +790,15 @@
                                                     <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ops-AP-DmR">
+                                                <rect key="frame" x="18" y="296" width="222" height="16"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="3Kf-Zx-Ne9">
+                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="Get-PZ-2n1" firstAttribute="top" secondItem="Das-ss-rmG" secondAttribute="top" constant="20" id="9t1-1X-Q0z"/>
@@ -823,6 +832,7 @@
                         <outlet property="dropPodfileArea" destination="ffq-XY-rch" id="wAr-6f-JMV"/>
                         <outlet property="mainSplitView" destination="W7S-SU-jex" id="vvp-OJ-jzP"/>
                         <outlet property="resetButton" destination="3BV-Kx-mPY" id="XPy-91-fOg"/>
+                        <outlet property="resultsCountLabel" destination="Ops-AP-DmR" id="hnH-qw-bR0"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

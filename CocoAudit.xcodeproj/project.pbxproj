@@ -10,7 +10,6 @@
 		0C5E709323823624001B0454 /* CVESearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E709223823624001B0454 /* CVESearchDelegate.swift */; };
 		0C5E7096238236A0001B0454 /* CVEMatches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E7095238236A0001B0454 /* CVEMatches.swift */; };
 		0C5E70982382385B001B0454 /* CVESearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E70972382385B001B0454 /* CVESearchResults.swift */; };
-		0C5E709B23823AB6001B0454 /* Searcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E709A23823AB6001B0454 /* Searcher.swift */; };
 		0C5E709D23823B11001B0454 /* SearchBlob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E709C23823B11001B0454 /* SearchBlob.swift */; };
 		0C78C2E8237A18C00083F9FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78C2E7237A18C00083F9FA /* AppDelegate.swift */; };
 		0C78C2EC237A18C10083F9FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2EB237A18C10083F9FA /* Assets.xcassets */; };
@@ -19,6 +18,8 @@
 		0C78C306237A18C20083F9FA /* CocoAuditUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78C305237A18C20083F9FA /* CocoAuditUITests.swift */; };
 		0C78C314237A23700083F9FA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78C313237A23700083F9FA /* MainViewController.swift */; };
 		0C78C319237A29150083F9FA /* DragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C78C318237A29150083F9FA /* DragView.swift */; };
+		0C866745238B102B00A2939C /* ResultsParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C866744238B102B00A2939C /* ResultsParserDelegate.swift */; };
+		0C866747238B162500A2939C /* CVEsearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C866746238B162500A2939C /* CVEsearchAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +43,6 @@
 		0C5E709223823624001B0454 /* CVESearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVESearchDelegate.swift; sourceTree = "<group>"; };
 		0C5E7095238236A0001B0454 /* CVEMatches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVEMatches.swift; sourceTree = "<group>"; };
 		0C5E70972382385B001B0454 /* CVESearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVESearchResults.swift; sourceTree = "<group>"; };
-		0C5E709A23823AB6001B0454 /* Searcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searcher.swift; sourceTree = "<group>"; };
 		0C5E709C23823B11001B0454 /* SearchBlob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBlob.swift; sourceTree = "<group>"; };
 		0C78C2E4237A18C00083F9FA /* CocoAudit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoAudit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C78C2E7237A18C00083F9FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +58,8 @@
 		0C78C307237A18C20083F9FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C78C313237A23700083F9FA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0C78C318237A29150083F9FA /* DragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragView.swift; sourceTree = "<group>"; };
+		0C866744238B102B00A2939C /* ResultsParserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsParserDelegate.swift; sourceTree = "<group>"; };
+		0C866746238B162500A2939C /* CVEsearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVEsearchAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				0C5E709223823624001B0454 /* CVESearchDelegate.swift */,
+				0C866744238B102B00A2939C /* ResultsParserDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -106,7 +109,7 @@
 		0C5E709923823AA2001B0454 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				0C5E709A23823AB6001B0454 /* Searcher.swift */,
+				0C866746238B162500A2939C /* CVEsearchAPI.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -314,12 +317,13 @@
 			files = (
 				0C5E709D23823B11001B0454 /* SearchBlob.swift in Sources */,
 				0C78C314237A23700083F9FA /* MainViewController.swift in Sources */,
-				0C5E709B23823AB6001B0454 /* Searcher.swift in Sources */,
 				0C5E70982382385B001B0454 /* CVESearchResults.swift in Sources */,
 				0C78C2E8237A18C00083F9FA /* AppDelegate.swift in Sources */,
 				0C5E709323823624001B0454 /* CVESearchDelegate.swift in Sources */,
 				0C5E7096238236A0001B0454 /* CVEMatches.swift in Sources */,
+				0C866745238B102B00A2939C /* ResultsParserDelegate.swift in Sources */,
 				0C78C319237A29150083F9FA /* DragView.swift in Sources */,
+				0C866747238B162500A2939C /* CVEsearchAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CocoAudit/CocoAudit.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 63R954V4BB;
@@ -504,6 +509,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CocoAudit/CocoAudit.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 63R954V4BB;
