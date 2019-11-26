@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import WebKit
 
 class MainViewController: NSViewController {
     
@@ -17,7 +18,11 @@ class MainViewController: NSViewController {
     @IBOutlet weak var cveSearchButton: NSButton!
     @IBOutlet weak var resetButton: NSButton!
     @IBOutlet weak var dragInstructionLabel: NSTextField!
-    @IBOutlet weak var resultsCountLabel: NSTextField!
+    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var podfileResultsTableView: NSTableView!
+    
+    var tableViewData = ["Test", "For", "TableView"]
+    var urlTableData: [URL] = []
     
     var fileUrl: URL? {
         didSet {
@@ -33,8 +38,10 @@ class MainViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        resultsCountLabel.stringValue = "" // default ""
         
+        // Tableview delegate
+        podfileResultsTableView.delegate = self
+        podfileResultsTableView.dataSource = self
         
         // Split view setup
         mainSplitView.delegate = self
@@ -50,12 +57,55 @@ class MainViewController: NSViewController {
         
         
     }
+    @IBAction func search(_ sender: NSButton) {
+        
+        tableViewData.append("hello")
+        podfileResultsTableView.reloadData()
+    }
     
     @IBAction func resetToInitialState(_ sender: NSButton) {
         dropPodfileArea.reset()
+        
     }
     
     
+}
+
+extension MainViewController: NSTableViewDelegate {
+    
+
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return tableViewData.count
+    }
+    
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return 25.0
+    }
+}
+
+extension MainViewController: NSTableViewDataSource {
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        tableView.cell?.isSelectable = false
+        
+        
+        let str = tableViewData[row]
+        let url = URL(string: "https://www.google.com")
+        //let attrStr = NSAttributedString(string: str, attributes: [NSAttributedString.Key.link:url])
+        let attrStr = NSMutableAttributedString(string: str)
+        let strCount = str.count
+        
+        urlTableData.append(url!)
+    
+        attrStr.setAttributes([.link:url!], range: NSRange(location: 0, length: strCount))
+        return NSTextField(labelWithAttributedString: attrStr)
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let selectedRow = podfileResultsTableView.selectedRow
+        webView.load(URLRequest(url: urlTableData[selectedRow]))
+    }
+
 }
 
 extension MainViewController: NSSplitViewDelegate {
@@ -96,6 +146,9 @@ extension MainViewController: NSTextFieldDelegate {
         if movement == NSReturnTextMovement {
             // TODO: - Run search against database
             print("Return was pressed oh yeah!")
+            let urlString = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=\(cveSearchTextField.stringValue)&search_type=all"
+            let urlRequest = URLRequest(url: URL(string: urlString)!)
+            webView.load(urlRequest)
         } else {
             return
         }
