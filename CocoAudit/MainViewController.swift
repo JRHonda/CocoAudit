@@ -102,7 +102,9 @@ extension MainViewController: NSTableViewDataSource {
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
+        // 
         let selectedRow = podfileResultsTableView.selectedRow
+        // Loads new page based on url accessed
         webView.load(URLRequest(url: urlTableData[selectedRow]))
     }
 
