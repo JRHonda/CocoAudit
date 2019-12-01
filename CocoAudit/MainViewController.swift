@@ -21,7 +21,7 @@ class MainViewController: NSViewController {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var podfileResultsTableView: NSTableView!
     
-    var tableViewData = ["Test", "For", "TableView"]
+    var tableViewData = ["Alamofire", "Firebase", "SwiftyJSON"]
     var urlTableData: [URL] = []
     
     var fileUrl: URL? {
@@ -45,7 +45,7 @@ class MainViewController: NSViewController {
         
         // Split view setup
         mainSplitView.delegate = self
-        mainSplitView.setPosition(225, ofDividerAt: 0)
+        //mainSplitView.setPosition(250, ofDividerAt: 0)
         
         // UI Delegates
         cveSearchTextField.delegate = self
@@ -53,14 +53,20 @@ class MainViewController: NSViewController {
         
         // Model delegates
         dropPodfileArea.delegate = self
-        cveSearchResults?.delegate = self as? CVESearchDelegate
+        cveSearchResults?.delegate = self
         
         
     }
+    
     @IBAction func search(_ sender: NSButton) {
-        
-        tableViewData.append("hello")
+        //tableViewData.append(cveSearchTextField.stringValue)
         podfileResultsTableView.reloadData()
+        let urlString = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=\(cveSearchTextField.stringValue)&search_type=all"
+        let urlRequest = URLRequest(url: URL(string: urlString)!)
+        DispatchQueue.main.async {
+            self.webView.load(urlRequest)
+        }
+        
     }
     
     @IBAction func resetToInitialState(_ sender: NSButton) {
@@ -90,7 +96,9 @@ extension MainViewController: NSTableViewDataSource {
         
         
         let str = tableViewData[row]
-        let url = URL(string: "https://www.google.com")
+        let urlString = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=\(str)&search_type=all"
+        let url = URL(string: urlString)
+        
         //let attrStr = NSAttributedString(string: str, attributes: [NSAttributedString.Key.link:url])
         let attrStr = NSMutableAttributedString(string: str)
         let strCount = str.count
@@ -111,12 +119,12 @@ extension MainViewController: NSTableViewDataSource {
 }
 
 extension MainViewController: NSSplitViewDelegate {
-    func splitView(_ splitView: NSSplitView, constrainMaxCoordinate proposedMaximumPosition: CGFloat, ofSubviewAt dividerIndex: Int) -> CGFloat {
-        return 250
-    }
+//    func splitView(_ splitView: NSSplitView, constrainMaxCoordinate proposedMaximumPosition: CGFloat, ofSubviewAt dividerIndex: Int) -> CGFloat {
+//        return 400
+//    }
     
     func splitView(_ splitView: NSSplitView, constrainMinCoordinate proposedMinimumPosition: CGFloat, ofSubviewAt dividerIndex: Int) -> CGFloat {
-        return 200
+        return 250
     }
 }
 
