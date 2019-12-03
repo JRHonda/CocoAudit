@@ -16,6 +16,8 @@ protocol DragDropViewDelegate: AnyObject
 
 class DragView: NSView {
     
+    var urls: [URLRequest] = []
+    
     // MARK: - Properties
     private var isFileTypeIsOk = false
     
@@ -97,7 +99,16 @@ class DragView: NSView {
             return false
         }
         print("Dragged file URL", draggedFileUrl)
+        let urlRequests = [
+            URLRequest(url: URL(string: "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=Firebase&search_type=all")!),
+            URLRequest(url: URL(string: "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=React&search_type=all")!),
+            URLRequest(url: URL(string: "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=Alamofire&search_type=all")!),
+            
+        ]
         
+        urls.append(contentsOf: urlRequests)
+        
+        urlsToDemo.append(contentsOf: urls)
         // Set delegate property with delegate method call
         if let fileUrl = self.delegate?.draggedFile(url: draggedFileUrl) {
             self.delegate?.fileUrl = fileUrl // protocol variable must be NOT be assigned directly from delegate method call because it will throw simulataneous access errors. This is why I am using an if-let statement

@@ -9,6 +9,8 @@
 import Cocoa
 import WebKit
 
+public var urlsToDemo: [URLRequest] = []
+
 class MainViewController: NSViewController {
     
     // MARK: - Properties
@@ -21,7 +23,7 @@ class MainViewController: NSViewController {
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var podfileResultsTableView: NSTableView!
     
-    var tableViewData = ["Alamofire", "Firebase", "SwiftyJSON"]
+    var tableViewData = ["Firebase", "React", "Alamofire"]
     var urlTableData: [URL] = []
     
     var fileUrl: URL? {
@@ -71,7 +73,8 @@ class MainViewController: NSViewController {
     
     @IBAction func resetToInitialState(_ sender: NSButton) {
         dropPodfileArea.reset()
-        
+        urlsToDemo.removeAll()
+        podfileResultsTableView.reloadData()
     }
     
     
@@ -91,21 +94,25 @@ extension MainViewController: NSTableViewDelegate {
 }
 
 extension MainViewController: NSTableViewDataSource {
+    
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         tableView.cell?.isSelectable = false
         
         
         let str = tableViewData[row]
-        let urlString = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=\(str)&search_type=all"
-        let url = URL(string: urlString)
+//        let urlString = "https://nvd.nist.gov/vuln/search/results?form_type=Basic&results_type=overview&query=\(str)&search_type=all"
+//        let url = URL(string: urlString)
         
         //let attrStr = NSAttributedString(string: str, attributes: [NSAttributedString.Key.link:url])
         let attrStr = NSMutableAttributedString(string: str)
         let strCount = str.count
         
-        urlTableData.append(url!)
+       // urlTableData.append(url!)
+        if urlsToDemo.count == 0 {
+            return nil
+        }
     
-        attrStr.setAttributes([.link:url!], range: NSRange(location: 0, length: strCount))
+        attrStr.setAttributes([.link:urlsToDemo[row]], range: NSRange(location: 0, length: strCount))
         return NSTextField(labelWithAttributedString: attrStr)
     }
     
@@ -113,7 +120,8 @@ extension MainViewController: NSTableViewDataSource {
         // Adding a comment
         let selectedRow = podfileResultsTableView.selectedRow
         // Loads new page based on url accessed
-        webView.load(URLRequest(url: urlTableData[selectedRow]))
+       // webView.load(URLRequest(url: urlTableData[selectedRow]))
+        webView.load(urlsToDemo[selectedRow])
     }
 
 }
@@ -135,6 +143,7 @@ extension MainViewController: DragDropViewDelegate {
         guard fileUrl != nil else {
             return nil
         }
+        podfileResultsTableView.reloadData()
         return fileUrl
     }
     
